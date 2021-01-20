@@ -42,4 +42,4 @@ document.querySelector(".btn-roll").addEventListener('click', function(){
 
     }
 })
-
+// Холд товч
