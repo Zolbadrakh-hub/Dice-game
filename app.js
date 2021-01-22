@@ -32,14 +32,32 @@ document.querySelector(".btn-roll").addEventListener('click', function(){
     else
     {
         roundScore = 0;
+        switchToNextPlayer();
+
+    }
+})
+// Холд товч дарахад оноог дээш нь гаргах
+document.querySelector(".btn-hold").addEventListener('click', function(){
+    scores[activePlayer] = scores[activePlayer] + roundScore;
+    document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+    if(scores[activePlayer] >= 20){
+        document.getElementById('name-' + activePlayer).textContent = "Winner";
+        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+        document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
+        activePlayer == 0 ? otherPlayer = 1 : otherPlayer = 0;
+        document.querySelector('.player-' + otherPlayer + '-panel').classList.add("loser")
+    }
+    else{
+        roundScore = 0;
+        switchToNextPlayer();
+    }
+})
+
+function switchToNextPlayer(){
         document.getElementById("current-" +activePlayer).textContent = 0;
 
        activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
 
        document.querySelector(".player-0-panel").classList.toggle("active");
        document.querySelector(".player-1-panel").classList.toggle("active");
-       diceDom.style.display = " none";
-
-    }
-})
-// Холд товч
+}
